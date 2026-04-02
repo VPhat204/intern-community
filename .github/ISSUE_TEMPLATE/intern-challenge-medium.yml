@@ -3,13 +3,14 @@ description: A feature-level task that requires reading existing code and extend
 labels:
   - "intern-challenge"
   - "difficulty: medium"
+
 body:
   - type: markdown
     attributes:
       value: |
         ## TD Intern Challenge — Medium
 
-        This task requires you to **read existing code** and extend it correctly.
+        This task requires you to **read existing code and extend it correctly**.
         A few things we'll be watching:
         - Did you read the code before writing? (PRs that ignore existing patterns get rejected)
         - Did you ask for clarification when the requirements were ambiguous?
@@ -21,20 +22,39 @@ body:
     id: task
     attributes:
       label: Task description
-    validations:
-      required: true
+      description: What needs to be done
+      value: |
+        Implement filtering and search improvements for Community Modules on the homepage.
+
+        The system should support:
+        - Search via query parameter (q)
+        - Category filtering via query parameter (category)
+        - These filters must work together seamlessly
+
+        Ensure the UI reflects the current state from the URL and persists after page reload.
 
   - type: textarea
     id: acceptance
     attributes:
       label: Acceptance criteria
-    validations:
-      required: true
+      value: |
+        - User can search modules using the search input
+        - User can filter modules by category
+        - URL updates with query parameters (?q=, ?category=)
+        - State persists after page reload
+        - Search and category filters work together
+        - No breaking existing functionality
+        - Code follows existing project patterns
 
   - type: textarea
     id: hints
     attributes:
       label: Hints & relevant files
+      value: |
+        - File: src/app/page.tsx
+        - Prisma query: db.miniApp.findMany()
+        - Use searchParams to read query params
+        - Combine filters in the database query (where clause)
 
   - type: textarea
     id: ambiguity
@@ -43,8 +63,17 @@ body:
       description: |
         Some parts of this issue are left vague on purpose.
         You are expected to ask a clarifying question in the comments before proceeding.
+      value: |
+        - Should search be case-insensitive?
+        - Should category filtering allow multiple categories or only one?
+        - How should empty results be handled in the UI?
 
   - type: textarea
     id: notes
     attributes:
       label: Notes for reviewer
+      value: |
+        - Implemented search and category filtering using URL query params
+        - Ensured compatibility between filters
+        - Maintained existing project structure and patterns
+        - Tested manually with multiple combinations of filters
